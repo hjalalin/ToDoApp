@@ -44,34 +44,3 @@ def delete(task_id):
 
 if __name__ == '__main__':
     app.run(debug=True)
-This example assumes you have a templates folder in the same directory as your main script (app.py in this case). In that templates folder, create an HTML file named index.html with the following content:
-
-html
-Copy code
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ToDo App</title>
-</head>
-<body>
-    <h1>ToDo App</h1>
-    
-    <form action="/add" method="POST">
-        <label for="newTask">New Task:</label>
-        <input type="text" id="newTask" name="newTask" required>
-        <button type="submit">Add Task</button>
-    </form>
-
-    <ul>
-        {% for task in tasks %}
-            <li>
-                {{ task.title }}
-                <a href="/complete/{{ task.id }}">Mark as {{ "Incomplete" if task.completed else "Complete" }}</a>
-                <a href="/delete/{{ task.id }}">Delete</a>
-            </li>
-        {% endfor %}
-    </ul>
-</body>
-</html>
